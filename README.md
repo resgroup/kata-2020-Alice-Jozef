@@ -1,1 +1,1 @@
-# kata-2020-Alice-Josef
+# kata-2020-Alice-Jozef
