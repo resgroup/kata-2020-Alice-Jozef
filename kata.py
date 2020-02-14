@@ -15,26 +15,20 @@ def berlin_clock(input_string):
     third_row = ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
     fourth_row = ['O', 'O', 'O', 'O']
 
-    number_lights_on_top_light = seconds % 2
-    colour = 'Y'
-    update_lights_in_row(number_lights_on_top_light, top_light, colour)
+    number_lights_on_top_light = get_number_lights_on_top_light(seconds)
+    update_lights_in_row(number_lights_on_top_light, top_light, 'Y')
 
-    number_lights_on_top_row = int(np.floor(hours / 5.0))
-    colour = 'R'
-    update_lights_in_row(number_lights_on_top_row, top_row, colour)
+    number_lights_on_top_row = get_number_lights_on_top_row(hours)
+    update_lights_in_row(number_lights_on_top_row, top_row, 'R')
 
-    number_lights_on_second_row = hours % 5
-    colour = 'R'
-    update_lights_in_row(number_lights_on_second_row, second_row, colour)
+    number_lights_on_second_row = get_number_lights_on_second_row(hours)
+    update_lights_in_row(number_lights_on_second_row, second_row, 'R')
 
-    number_lights_on_third_row = int(np.floor(minutes / 5))
-    colour = 'Y'
-    update_lights_in_row(number_lights_on_third_row, third_row, colour)
+    number_lights_on_third_row = get_number_lights_on_third_row(minutes)
+    update_lights_in_row(number_lights_on_third_row, third_row, 'Y')
 
-    number_lights_on_fourth_row = minutes % 5
-    colour = 'Y'
-    update_lights_in_row(number_lights_on_fourth_row, fourth_row, colour)
-
+    number_lights_on_fourth_row = get_number_lights_on_fourth_row(minutes)
+    update_lights_in_row(number_lights_on_fourth_row, fourth_row, 'Y')
 
     clock = top_light
     clock.append(top_row)
@@ -45,10 +39,35 @@ def berlin_clock(input_string):
     return clock
 
 
+def get_number_lights_on_fourth_row(minutes):
+    number_lights_on_fourth_row = minutes % 5
+    return number_lights_on_fourth_row
+
+
+def get_number_lights_on_third_row(minutes):
+    number_lights_on_third_row = int(np.floor(minutes / 5))
+    return number_lights_on_third_row
+
+
 def update_lights_in_row(number_lights_on_row, row, colour):
     for i, value in enumerate(row[:number_lights_on_row]):
         row[i] = colour
     return row
+
+
+def get_number_lights_on_top_light(seconds):
+    number_lights_on_top_light = (seconds + 1) % 2
+    return number_lights_on_top_light
+
+
+def get_number_lights_on_top_row(hours):
+    number_lights_on_top_row = int(np.floor(hours / 5.0))
+    return number_lights_on_top_row
+
+
+def get_number_lights_on_second_row(hours):
+    number_lights_on_second_row = hours % 5
+    return number_lights_on_second_row
 
 
 if __name__ == '__main__':
