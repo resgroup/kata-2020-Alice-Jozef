@@ -7,36 +7,32 @@ def berlin_clock(input_string):
     minutes = int(input_string.split(':')[1])
     seconds = int(input_string.split(':')[2])
 
-    top_light = ['O\n']
-    top_row = ['OOOO\n']
-    second_row = ['OOOO\n']
-    third_row = ['OOOOOOOOOOO\n']
-    fourth_row = ['OOOO\n']
+    top_light = ['O']
+    top_row = ['O','O','O','O',]
+    second_row = ['O','O','O','O',]
+    third_row = ['O','O','O','O','O','O','O','O','O','O','O',]
+    fourth_row = ['O','O','O','O',]
 
     if seconds % 2 == 0:
         top_light[0] = 'Y'
 
     number_lights_on_top_row = int(np.floor(hours / 5.0))
-    top_row[:number_lights_on_top_row] = 'R'
+    top_row[:number_lights_on_top_row-1] = 'R'
 
     number_lights_on_second_row = hours % 5
-    second_row[:number_lights_on_second_row] = 'R'
+    second_row[:number_lights_on_second_row-1] = 'R'
 
     number_lights_on_third_row = int(np.floor(minutes / 5))
-    third_row[:number_lights_on_third_row] = 'Y'
+    third_row[:number_lights_on_third_row-1] = 'Y'
 
     number_lights_on_fourth_row = minutes % 5
-    fourth_row[:number_lights_on_fourth_row] = 'Y'
-
-    print(top_light)
-    print(top_row)
-    print(second_row)
+    fourth_row[:number_lights_on_fourth_row-1] = 'Y'
 
     clock = top_light
-    clock = clock.append(top_row)
-    clock = clock.append(second_row)
-    clock = clock.append(third_row)
-    clock = clock.append(fourth_row)
+    clock.append(top_row)
+    clock.append(second_row)
+    clock.append(third_row)
+    clock.append(fourth_row)
 
     return clock
 
