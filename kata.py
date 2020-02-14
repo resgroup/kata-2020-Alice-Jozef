@@ -17,16 +17,16 @@ def berlin_clock(input_string):
         top_light[0] = 'Y'
 
     number_lights_on_top_row = int(np.floor(hours / 5.0))
-    top_row[:number_lights_on_top_row-1] = 'R'
+    top_row[:number_lights_on_top_row] = 'R'
 
     number_lights_on_second_row = hours % 5
-    second_row[:number_lights_on_second_row-1] = 'R'
+    second_row[:number_lights_on_second_row] = 'R'
 
     number_lights_on_third_row = int(np.floor(minutes / 5))
-    third_row[:number_lights_on_third_row-1] = 'Y'
+    third_row[:number_lights_on_third_row] = 'Y'
 
     number_lights_on_fourth_row = minutes % 5
-    fourth_row[:number_lights_on_fourth_row-1] = 'Y'
+    fourth_row[:number_lights_on_fourth_row] = 'Y'
 
     clock = top_light
     clock.append(top_row)
